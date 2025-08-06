@@ -1,0 +1,170 @@
+/* Styles pour les pages de résultat de paiement */
+.payment-result {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.payment-success-card,
+.payment-cancel-card {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.success-icon {
+  font-size: 80px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.cancel-icon {
+  font-size: 80px;
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+.success-title {
+  color: #28a745;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.cancel-title {
+  color: #dc3545;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.success-message,
+.cancel-message {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.transaction-details {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.transaction-details h5 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.transaction-details p {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.status-loading {
+  color: #007bff;
+  font-style: italic;
+}
+
+.payment-status {
+  margin-top: 15px;
+}
+
+.status-error {
+  color: #dc3545;
+  font-style: italic;
+}
+
+.cancel-reasons {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.cancel-reasons h5 {
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.cancel-reasons ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.cancel-reasons li {
+  padding: 5px 0;
+  color: #666;
+  position: relative;
+  padding-left: 20px;
+}
+
+.cancel-reasons li:before {
+  content: "•";
+  color: #dc3545;
+  position: absolute;
+  left: 0;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.action-buttons .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.action-buttons .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.action-buttons .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.action-buttons .btn-outline-primary:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .payment-success-card,
+  .payment-cancel-card {
+    padding: 30px 20px;
+  }
+  
+  .success-icon,
+  .cancel-icon {
+    font-size: 60px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
