@@ -66,11 +66,11 @@ const Header = () => {
     })
   }
 
+ console.log('currentUser', currentUser)
+
   const logout = () => {
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('refresh_token')
-    localStorage.removeItem('drupalOder')
-    localStorage.removeItem('logout')
+    localStorage.clear()
+
     signOut(auth).then(() => {
     
       toast.success('Logged out')

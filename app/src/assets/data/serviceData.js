@@ -7,8 +7,8 @@ const serviceData = [
   },
   {
     icon: "ri-refresh-line",
-    title: "Naviguez en peace",
-    subtitle: "Naviguez sans limite.",
+    title: "Toutes les marques",
+    subtitle: "Vehicules hybrides et autres.",
     bg: "#ceebe9",
   },
   {
@@ -18,11 +18,11 @@ const serviceData = [
     bg: "#e2f2b2",
   },
   {
-    icon: "ri-exchange-dollar-line",
-    title: " Qualité Garantie",
-    subtitle: "Connexion de qualité.",
+    icon: "ri-shield-check-line",
+    title: "Qualité Garantie",
+    subtitle: "Réparations  et pièces d'origine.",
     bg: "#d6e5fb",
-  },
+},
 ];
 
 export default serviceData;

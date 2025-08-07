@@ -72,7 +72,7 @@ const PaymentButton = ({
       ],
     };
     
-    sendWhatsappMessage(msg);
+    // sendWhatsappMessage(msg);
       if (paymentMethod === 'cinetpay') {
         await handleCinetPayPayment();
       }

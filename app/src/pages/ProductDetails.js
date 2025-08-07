@@ -32,7 +32,7 @@ const ProductDetails = () => {
 
 
 
-  const relatedProducts = products.filter(item => item.attributes.category.data.attributes.name === 'Vêtements')
+  const relatedProducts = products.filter(item => item.attributes.category.data.attributes.name === 'consommable')
 
   const submitHandler= (e) => {
     e.preventDefault()
@@ -49,107 +49,102 @@ const ProductDetails = () => {
   }
 
   const addToCart = () => {
+  
     dispatch(cartActions.addItem({
       id,
-      imgID: attributes?.image.data[0].url,
+      imgID: attributes?.image.data[0].attributes.url,
       producName: attributes.name,
-      price: attributes.prices, 
+      price: attributes.price, 
+      type: category?.data?.attributes?.name,
     }))
 
-    toast.success('Product added successfully')
+    toast.success('Produit ajouté avec succès au panier')
   }
 
 
   useEffect(()=> {
     window.scrollTo(0,0)
   }, [product])
- useEffect(()=> {
-  console.log('youhouuu')
- })
+
   return <Helmet title={attributes.name}>
     <CommonSection title={attributes.name} />
     {console.log('le produit',product)}
     <section className='pt-0'>
-      <Container>
-        <Row>
-          <Col lg='6'><img src={`http://141.94.204.155:1337${attributes.image.data[0].attributes.url}`} alt="" /></Col>
+    <Container>
+      <Row className="g-4">
+        {/* Image Section */}
+        <Col lg='6'>
+          <div className="product-detail-image mt-16 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-4 shadow-lg h-96 d-flex align-items-center justify-content-center position-relative overflow-hidden">
+            <div className="position-absolute top-0 start-0 w-100 h-100 bg-gradient-to-br from-blue-400/10 to-purple-400/10"></div>
+            <img 
+              src={`http://localhost:1337${attributes.image.data[0].attributes.url}`} 
+              className='w-100 h-100 object-contain position-relative' 
+              alt={attributes.name}
+              style={{ zIndex: 1 }}
+            />
+          </div>
+        </Col>
 
-          <Col lg='6'>
-            <div className="product__details">
-              <h2>{product?.attributes.name}</h2>
-              <div className="product__rating d-flex align-items-center gap-5 mb-3">
-                <div>
-                  <span><i className="ri-star-s-fill"></i></span>
-                  <span><i className="ri-star-s-fill"></i></span>
-                  <span><i className="ri-star-s-fill"></i></span>
-                  <span><i className="ri-star-s-fill"></i></span>
-                  <span><i className="ri-star-half-s-line"></i></span>
-
-                </div>
-                <p className='mb-0'>(<span>{'4.5'}</span>ratings)</p>
+        {/* Details Section */}
+        <Col lg='6'>
+          <div className="product__details bg-white rounded-3xl p-4 shadow-lg border border-gray-100 h-96">
+            {/* Product Title */}
+            <h2 className="text-gray-800 font-bold mb-3 text-2xl">{product?.attributes.name}</h2>
+            
+            {/* Rating Section */}
+            <div className="product__rating d-flex align-items-center gap-3 mb-4">
+              <div className="d-flex">
+                <span className="text-warning"><i className="ri-star-s-fill"></i></span>
+                <span className="text-warning"><i className="ri-star-s-fill"></i></span>
+                <span className="text-warning"><i className="ri-star-s-fill"></i></span>
+                <span className="text-warning"><i className="ri-star-s-fill"></i></span>
+                <span className="text-warning"><i className="ri-star-half-s-line"></i></span>
               </div>
-              <div className='d-flex align-items-center gap-5'>
-                <span className='proudct__price'>{util.formatCirrency(attributes.price)}</span>
-                <span>Category : {attributes.category.data.attributes.name}</span>
-              </div>
-              <p className='mt-3'> {attributes.description} </p>
-              <motion.button whileTap={{ scale: 1.2 }} className="buy__btn" onClick={addToCart}> Add to Cart </motion.button>
+              <p className='mb-0 text-gray-600 small'>(<span className="text-indigo-600 font-semibold">4.5</span> avis)</p>
             </div>
-          </Col>
-        </Row>
-      </Container>
-    </section>
 
+            {/* Price and Category */}
+            <div className='d-flex align-items-center gap-4 mb-4'>
+              <span className='proudct__price text-indigo-600 font-bold text-xl'>{util.formatCirrency(attributes.price)}</span>
+              <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+                {attributes.category.data.attributes.name}
+              </span>
+            </div>
+
+            {/* Description */}
+            <div className="product-description mb-4">
+              <h6 className="text-gray-700 font-semibold mb-2">Description :</h6>
+              <div className="text-gray-600 text-sm" style={{ maxHeight: '120px', overflowY: 'auto' }}>
+                {attributes.description.split('-').map((desc, index) => (
+                  desc.trim() && (
+                    <div key={index} className="d-flex align-items-start mb-2">
+                      <span className="bg-indigo-400 rounded-circle me-2 mt-1" style={{ width: '6px', height: '6px', flexShrink: 0 }}></span>
+                      <span>{desc.trim()}</span>
+                    </div>
+                  )
+                ))}
+              </div>
+            </div>
+
+            {/* Add to Cart Button */}
+            <button 
+              className="btn btn-primary w-100 rounded-3xl py-3 bg-gradient-to-r from-indigo-600 to-purple-600 border-0 font-semibold text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg"
+              onClick={addToCart}
+            >
+              <i className="ri-shopping-cart-line me-2"></i>
+              Ajouter au panier
+            </button>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  </section>
     <section>
       <Container>
         <Row>
-          <Col lg="12">
-            <div className="tab__wrapper d-flex align-items-center gap-5">
-              <h6 className={`${tab === 'desc' ? 'active__tab' : ''}`} onClick={() => setTab('desc')}>Description</h6>
-              <h6 className={`${tab === 'rev' ? 'active__tab' : ''}`} onClick={() => setTab('rev')}>Reviews ({"3"})</h6>
-            </div>
-
-            {
-              tab === 'desc' ?
-                <div className="tab__content mt-6">
-                  <p>{'description'}</p>
-                </div> : (<div className='product__review mt-5'>
-                  <div className="review__wrapper">
-                    <ul>
-                      <li>
-                        youhou
-                      </li>
-                      
-                    </ul>
-
-                    <div className="review__form">
-                      <h4>Leave your experience</h4>
-                      <form action="" onSubmit={submitHandler}>
-                        <div className="form__group">
-                          <input type="text" placeholder='Enter name' ref={reviewUser} required/>
-                        </div>
-
-                        <div className="form__group d-flex align-items-center gap-lg-5 rating__group">
-                          <motion.span whileTap={{scale:1.2}} onClick={() => setRating(1)}>1<i className="ri-star-s-fill"></i></motion.span>
-                          <motion.span whileTap={{scale:1.2}} onClick={() => setRating(2)}>2<i className="ri-star-s-fill"></i></motion.span>
-                          <motion.span whileTap={{scale:1.2}} onClick={() => setRating(3)}>3<i className="ri-star-s-fill"></i></motion.span>
-                          <motion.span whileTap={{scale:1.2}} onClick={() => setRating(4)}> 4<i className="ri-star-s-fill"></i></motion.span>
-                          <motion.span whileTap={{scale:1.2}} onClick={() => setRating(5)}>5<i className="ri-star-s-fill"></i></motion.span>
-                        </div>
-
-                        <div className="form__group">
-                          <textarea rows={4} type="text" placeholder='Review Message ...' ref={reviewMsg} required />
-                        </div>
-
-                        <motion.button whileTap={{scale:1.2}} type="submit" className="buy__btn">submit</motion.button>
-                      </form>
-                    </div>
-                  </div>
-                </div>)
-            }
-          </Col>
-          <Col lg='12' className='mt-5'>
-            <h2 className="related__title">You might also like</h2>
+        
+          <Col lg='12' className='mt-5 mb-3'>
+            <h2 className="related__title">Vous pourriez aussi aimer</h2>
           </Col>
 
           <ProductList data={relatedProducts} />

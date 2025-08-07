@@ -27,7 +27,10 @@ const Home = () => {
   useEffect(() => {
     const naturalProducts = data?.data.filter((item) => item);
 
-    setTrendingProduct(data?.data);
+    setTrendingProduct(data?.data?.filter(item => item.attributes?.category?.data?.attributes?.name !== 'consommable' ) || []); 
+    setBestSalesProducts(
+      naturalProducts?.filter((item) => item.attributes?.category?.data?.attributes?.name === "consommable") || []
+    );
   }, [isSuccess]);
 
   return (
@@ -39,7 +42,8 @@ const Home = () => {
             <Col lg="6" md="6">
               <div className="hero__content">
                 <p className="hero_subtitle uppercase">
-                  {t("Dolo Garage Prestige ")} {year}
+                Dolo <span className="text-warning">Garage</span>{" "}
+                <span className="text-danger">Prestige</span> {year}
                 </p>
                 <h2>Le meilleur du matériel auto, du luxe à l’essentiel</h2>
                 <p>
@@ -68,10 +72,10 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12" className="text-center mb-4">
-              <h2 className="section__title text-3xl">Les tickets</h2>
+              <h2 className="section__title text-3xl">Les consommables</h2>
             </Col>
             {isFetching && <h2 className="section__title">Wait ....</h2>}
-            <ProductList data={trendingProduct} isFetching={isFetching} />
+            <ProductList data={bestSalesProducts} isFetching={isFetching} />
           </Row>
         </Container>
       </section>
@@ -88,7 +92,7 @@ const Home = () => {
       </Container>
     </section> */}
 
-      <section className="timer__count">
+      <section className="timer__count ">
         <Container>
           <Row>
             <Col lg="6" md="12" className="count__down-col">
@@ -105,8 +109,8 @@ const Home = () => {
                 <Link to="/shop"> Les meilleurs offres </Link>
               </motion.button>
             </Col>
-            <Col lg="6" md="12" className="text-end counter__img">
-              <img src={counterImg} alt="" />
+            <Col lg="6" md="12" className="text-end counter__img h-full  ">
+              <img src={counterImg} alt="" className="object-cover " />
             </Col>
           </Row>
         </Container>
@@ -117,7 +121,7 @@ const Home = () => {
           <Col lg='12' className='text-center'>
             <h2 className='section__title'> Accessoires auto</h2>
           </Col>
-          <ProductList data={mobileProducts} isLoading={isLoading} />
+          <ProductList data={trendingProduct} isLoading={isLoading} />
           <ProductList data={wirelessProducts} isLoading={isLoading} />
         </Row>
       </Container>

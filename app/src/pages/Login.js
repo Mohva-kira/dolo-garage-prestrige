@@ -40,16 +40,21 @@ const Login = (props) => {
         .then((payload) => {
           console.log('fulfilled', payload)
           localStorage.setItem('user', JSON.stringify(payload))
-
-
+          toast.success('Successfull logged in')
+          navigate('/checkout')
+          setLoading(false)
 
         })
-        .catch((error) => console.log('rejected', error))
+        .catch((error) => {
+          console.log('rejected', error)
+          setLoading(false)
+          toast.error('Email ou mot de passe incorrect - ' + error.data.error.message)
+          // toast.error(error.data.message || error.error)
+        })
 
 
-      setLoading(false)
-      toast.success('Successfull logged in')
-      navigate('/checkout')
+    
+
 
     } catch (error) {
       setLoading(false)

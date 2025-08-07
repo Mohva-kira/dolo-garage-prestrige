@@ -44,8 +44,8 @@ const Cart = () => {
     
   }
 
-  return <Helmet title="Shopping cart">
-    <CommonSection title="Shopping cart" />
+  return <Helmet title="Panier">
+    <CommonSection title="Panier" />
     <section>
     
       <Container>
