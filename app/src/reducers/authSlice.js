@@ -38,7 +38,7 @@ const initialState = {
 
    export const authAPI = createApi({
     reducerPath: 'authAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:1337/api'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'https://apidolo.diabara.tv/api'}),
     endpoints: (builder) => ({
         signUp: builder.mutation({
             query: (data) => ({

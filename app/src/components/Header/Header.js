@@ -106,7 +106,7 @@ const Header = () => {
         <Row>
           <div className="nav__wrapper">
             <div className="logo">
-              <img src={logo} alt="logo" className='logo__img's />
+              <img src={logo} alt="logo" className='logo__img' />
 
               <div>
 

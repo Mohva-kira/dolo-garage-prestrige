@@ -13,6 +13,8 @@ import { useGetProductsImagesQuery } from "../../reducers/products";
 import { CiShoppingCart } from "react-icons/ci";
 import logo from "../../assets/images/logo.png";
 import { CiWifiOn } from "react-icons/ci";
+
+
 const ProductCard = ({ item }) => {
   const dataImages = useSelector((state) => state.products.items.included);
 
@@ -20,6 +22,10 @@ const ProductCard = ({ item }) => {
     (el) => el.id === item.relationships.field_image.data[0].id
   );
 
+
+  const apiFile = process.env.REACT_APP_API_FILE || "http://apidolo.diabara.tv";
+
+  console.log('apiFile', apiFile, process.env.REACT_APP_API_FILE)
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -27,9 +33,9 @@ const ProductCard = ({ item }) => {
     dispatch(
       cartActions.addItem({
         id: item.id,
-        productName: item.attributes.name,
-        price: item.attributes.price,
-        imgID: item.attributes.image.data[0].attributes.url,
+        productName: item.name,
+        price: item.price,
+        imgID: item.image[0].url,
         type: item.type,
       })
     );
@@ -48,12 +54,12 @@ const ProductCard = ({ item }) => {
           <motion.img
           onClick={() => navigate(`/shop/${item.id}`)}
             src={
-              item.attributes?.image
-                ? "http://localhost:1337" +
-                  item.attributes.image.data[0].attributes.url
+              item?.image
+                ? apiFile +
+                  item.image[0].url
                 : logo
             }
-            alt={item.attributes.name}
+            alt={item.name}
             className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500"
             whileHover={{ scale: 1.1 }}
           />
@@ -75,20 +81,21 @@ const ProductCard = ({ item }) => {
         </div>
 
         {/* Content Container */}
-        <div className="p-5">
+        <div className="p-3 relative z-10">
           {/* Product Name */}
-          <h3 
-            onClick={() => navigate(`/shop/${item.id}`)}
-            className="product-name text-gray-800 font-bold text-lg mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-300 cursor-pointer"
+          <Link
+            to={`/shop/${item.id}`}
+            onClick={(e) => { e.stopPropagation() }}
+            className="block product-name text-gray-800 font-bold text-lg mb-2 px-2 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded"
           >
-            {item.attributes.name}
-          </h3>
+            {item.name}
+          </Link>
 
           {/* Description */}
           <div className="product-description mb-4 h-24 overflow-hidden">
             <ul className="text-sm text-gray-600 space-y-1">
-              {item.attributes.description
-                .split("-")
+              {item.description
+                ?.split("-")
                 .slice(0, 3)
                 .map((desc, index) => (
                   <li key={index} className="flex items-start space-x-2">
@@ -102,7 +109,7 @@ const ProductCard = ({ item }) => {
           <div className="flex items-center justify-between">
             <div className="price">
               <span className="text-2xl font-bold text-indigo-600">
-                {util.formatCirrency(Number(item.attributes.price))}
+                {util.formatCirrency(Number(item.price))}
               </span>
             </div>
 

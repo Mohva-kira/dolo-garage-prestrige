@@ -117,7 +117,7 @@ const Tr = ({ item }) => {
   }
   return <tr >
    
-    <td> <img className="rounded-full" src={`http://localhost:1337${item.imgID}`} alt="" /> </td>
+    <td> <img className="rounded-full" src={`https://apidolo.diabara.tv${item.imgID}`} alt="" /> </td>
     <td> {item.productName}  </td>
     <td>  { util.formatCirrency(item.price) } </td>
     <td>{item.quantity}px</td>

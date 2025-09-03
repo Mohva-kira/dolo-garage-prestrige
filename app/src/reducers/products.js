@@ -16,7 +16,7 @@ export const productsApi = createApi({
    
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:1337/api',
+        baseUrl: 'https://apidolo.diabara.tv/api',
 
     }),
     endpoints: (builder) => ({

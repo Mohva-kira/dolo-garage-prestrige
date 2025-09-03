@@ -88,7 +88,7 @@
     export const cartApi = createApi({
         reducerPath: 'cartApi',
         baseQuery: fetchBaseQuery({
-            baseUrl: 'http://192.168.10.3:1337/api',
+            baseUrl: 'https://apidolo.diabara.tv/api',
             prepareHeaders: (headers, { getState }) => {
             
             

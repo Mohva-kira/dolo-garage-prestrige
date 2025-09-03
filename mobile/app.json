@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "ecommerce",
+    "slug": "ecommerce",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/ic_launcher.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/ic_launcher.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.mohva.ecommerce"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/ic_launcher.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/ic_launcher.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ]
+    
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

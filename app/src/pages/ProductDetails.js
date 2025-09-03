@@ -28,11 +28,11 @@ const ProductDetails = () => {
 
   const WS_KEY = 'ws_key=X62XX13PRJYYZQP7FZR663UK4S29D4A9'
   
-   const { attributes, reviews, description, category } = product
+   const { name, price, image, reviews, description, category } = product
 
 
 
-  const relatedProducts = products.filter(item => item.attributes.category.data.attributes.name === 'consommable')
+  const relatedProducts = products.filter(item => item.category.name === 'consommable')
 
   const submitHandler= (e) => {
     e.preventDefault()
@@ -52,9 +52,9 @@ const ProductDetails = () => {
   
     dispatch(cartActions.addItem({
       id,
-      imgID: attributes?.image.data[0].attributes.url,
-      producName: attributes.name,
-      price: attributes.price, 
+      imgID: attributes?.image.data[0].url,
+      producName: name,
+      price: price, 
       type: category?.data?.attributes?.name,
     }))
 
@@ -66,8 +66,8 @@ const ProductDetails = () => {
     window.scrollTo(0,0)
   }, [product])
 
-  return <Helmet title={attributes.name}>
-    <CommonSection title={attributes.name} />
+  return <Helmet title={name}>
+    <CommonSection title={name} />
     {console.log('le produit',product)}
     <section className='pt-0'>
     <Container>
@@ -77,9 +77,9 @@ const ProductDetails = () => {
           <div className="product-detail-image mt-16 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-4 shadow-lg h-96 d-flex align-items-center justify-content-center position-relative overflow-hidden">
             <div className="position-absolute top-0 start-0 w-100 h-100 bg-gradient-to-br from-blue-400/10 to-purple-400/10"></div>
             <img 
-              src={`http://localhost:1337${attributes.image.data[0].attributes.url}`} 
+              src={`http://apidolo.diabara.tv${image[0].url}`} 
               className='w-100 h-100 object-contain position-relative' 
-              alt={attributes.name}
+              alt={name}
               style={{ zIndex: 1 }}
             />
           </div>
@@ -89,7 +89,7 @@ const ProductDetails = () => {
         <Col lg='6'>
           <div className="product__details bg-white rounded-3xl p-4 shadow-lg border border-gray-100 h-96">
             {/* Product Title */}
-            <h2 className="text-gray-800 font-bold mb-3 text-2xl">{product?.attributes.name}</h2>
+            <h2 className="text-gray-800 font-bold mb-3 text-2xl">{product?.name}</h2>
             
             {/* Rating Section */}
             <div className="product__rating d-flex align-items-center gap-3 mb-4">
@@ -105,9 +105,9 @@ const ProductDetails = () => {
 
             {/* Price and Category */}
             <div className='d-flex align-items-center gap-4 mb-4'>
-              <span className='proudct__price text-indigo-600 font-bold text-xl'>{util.formatCirrency(attributes.price)}</span>
+              <span className='proudct__price text-indigo-600 font-bold text-xl'>{util.formatCirrency(price)}</span>
               <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
-                {attributes.category.data.attributes.name}
+                {category.name}
               </span>
             </div>
 
@@ -115,7 +115,7 @@ const ProductDetails = () => {
             <div className="product-description mb-4">
               <h6 className="text-gray-700 font-semibold mb-2">Description :</h6>
               <div className="text-gray-600 text-sm" style={{ maxHeight: '120px', overflowY: 'auto' }}>
-                {attributes.description.split('-').map((desc, index) => (
+                {description.split('-').map((desc, index) => (
                   desc.trim() && (
                     <div key={index} className="d-flex align-items-start mb-2">
                       <span className="bg-indigo-400 rounded-circle me-2 mt-1" style={{ width: '6px', height: '6px', flexShrink: 0 }}></span>

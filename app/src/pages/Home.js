@@ -27,9 +27,9 @@ const Home = () => {
   useEffect(() => {
     const naturalProducts = data?.data.filter((item) => item);
 
-    setTrendingProduct(data?.data?.filter(item => item.attributes?.category?.data?.attributes?.name !== 'consommable' ) || []); 
+    setTrendingProduct(data?.data?.filter(item => item.category?.name === 'consommable' ) || []); 
     setBestSalesProducts(
-      naturalProducts?.filter((item) => item.attributes?.category?.data?.attributes?.name === "consommable") || []
+      naturalProducts?.filter((item) => item.category?.name !== "consommable") || []
     );
   }, [isSuccess]);
 
@@ -75,7 +75,7 @@ const Home = () => {
               <h2 className="section__title text-3xl">Les consommables</h2>
             </Col>
             {isFetching && <h2 className="section__title">Wait ....</h2>}
-            <ProductList data={bestSalesProducts} isFetching={isFetching} />
+            <ProductList data={trendingProduct} isFetching={isFetching} />
           </Row>
         </Container>
       </section>
@@ -116,15 +116,17 @@ const Home = () => {
         </Container>
       </section>
       <section className="new__arrivals">
-      <Container>
+      {bestSalesProducts?.length  > 0 &&
+        <Container>
         <Row>
           <Col lg='12' className='text-center'>
             <h2 className='section__title'> Accessoires auto</h2>
           </Col>
-          <ProductList data={trendingProduct} isLoading={isLoading} />
+          <ProductList data={bestSalesProducts} isLoading={isLoading} />
           <ProductList data={wirelessProducts} isLoading={isLoading} />
         </Row>
       </Container>
+      }
     </section>
     {/* <section className="popular__category">
       <Container>
