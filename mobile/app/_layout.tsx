@@ -12,7 +12,7 @@ export default function RootLayout() {
       gestureEnabled: true, 
       animation: 'slide_from_right',
       contentStyle: { 
-        backgroundColor: 'transparent',
+        backgroundColor: '#f4f1eb',
         shadowColor: 'transparent',
         shadowOpacity: 0,
         shadowRadius: 0,

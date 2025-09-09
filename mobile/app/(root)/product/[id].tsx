@@ -3,12 +3,15 @@ import { View, Text, Image, TouchableOpacity, ScrollView, SafeAreaView } from 'r
 
 import { Ionicons } from "@expo/vector-icons";
 
+import { router } from 'expo-router';
 // Données fictives pour les images et les options
 const productImages = [
-  { uri: 'https://i.ibb.co/CBytF3s/jacket-main.png' }, // Placeholder pour l'image principale
-  { uri: 'https://i.ibb.co/p0pD9jM/jacket-thumb1.png' }, // Placeholder pour la miniature 1
-  { uri: 'https://i.ibb.co/hV7G5Wd/jacket-thumb2.png' }, // Placeholder pour la miniature 2
+  { uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfpUW8Osm4F_OJS8mVZTAJElQRvNWJx2i2w&s' }, // Image principale (veste homme sur cintre)
+  { uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfpUW8Osm4F_OJS8mVZTAJElQRvNWJx2i2w&s' }, // Miniature 1 (veste en jean posée)
+  { uri: 'https://oilpark.ee/710-medium_default/total-quartz-9000-en-0w40-5l.jpg' }, //
 ];
+
+
 
 const productColors = [
   '#4361EE', // Blue
@@ -24,8 +27,10 @@ const ProductDetailsScreen = () => {
   const [selectedColor, setSelectedColor] = useState(productColors[0]);
   const [selectedSize, setSelectedSize] = useState(productSizes[0]);
 
+  
+
   return (
-    <SafeAreaView className={`flex-1 bg-white`}>
+    <SafeAreaView className={`flex-1 bg-white p-4 pb-14`}>
       {/* En-tête */}
       <View className={`flex-row justify-beeen items-center p-4 bg-white/70 backdrop-blur-sm z-10`}>
         <TouchableOpacity className={`p-2`}>
@@ -40,17 +45,17 @@ const ProductDetailsScreen = () => {
       {/* Contenu principal défilant */}
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Images du produit */}
-        <View className={`flex-row px-4 pt-4 pb-2 justify-beeen`}>
-          <Image source={productImages[0]} className={`w-3/4 h-64 rounded-xl`} resizeMode="cover" />
-          <View className={`w-1/4 pl-2 justify-beeen`}>
-            <Image source={productImages[1]} className={`w-full h-30 rounded-xl mb-2`} resizeMode="cover" />
-            <Image source={productImages[2]} className={`w-full h-30 rounded-xl mt-2`} resizeMode="cover" />
+        <View className={`flex-row px-4 pt-4 pb-2 justify-between`}>
+          <Image source={productImages[0]} className={`w-3/4 h-64 rounded-xl`} resizeMode="contain" />
+          <View className={`w-1/4 pl-2  justify-between items-center rounded-xl`}>
+            <Image source={productImages[1]} className={`w-full h-32 rounded-xl mt-2 `} resizeMode="cover" />
+            <Image source={productImages[2]} className={`w-full h-32 rounded-xl mt-2`} resizeMode="cover" />
           </View>
         </View>
 
         {/* Détails du produit */}
         <View className={`p-4`}>
-          <View className={`flex-row justify-beeen items-start`}>
+          <View className={`flex-row justify-between items-start`}>
             <Text className={`text-2xl font-bold text-gray-800`}>DS Winter Zacket</Text>
             <Text className={`text-2xl font-bold text-gray-800`}>$36.06</Text>
           </View>
@@ -113,7 +118,7 @@ const ProductDetailsScreen = () => {
           <View className={`bg-gray-900 rounded-xl px-4 py-3 w-1/3 mr-2 items-center`}>
             <Text className={`text-white font-bold text-lg`}>$36.06</Text>
           </View>
-          <TouchableOpacity className={`bg-purple-600 rounded-xl flex-1 py-3 ml-2 flex-row items-center justify-center`}>
+          <TouchableOpacity onPress={() => router.push('/(root)/cart') } className={`bg-purple-600 rounded-xl flex-1 py-3 ml-2 flex-row items-center justify-center`}>
             <Ionicons  name="cart-outline" size={20} color="#fff" className={`mr-2`} />
             <Text className={`text-white font-bold text-lg`}>Add to cart</Text>
           </TouchableOpacity>

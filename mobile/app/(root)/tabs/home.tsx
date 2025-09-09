@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Swiper from "react-native-swiper";
+import { router } from "expo-router";
 
 const mockProducts = [
   {
@@ -54,7 +55,7 @@ const home = () => {
     groupedProducts.push(mockProducts.slice(i, i + 2));
   }
   return (
-    <View className="flex-1  p-4">
+    <View className="flex-1 bg-[#f4f1eb]  p-4">
       <Text className="text-xl font-bold mb-4">Mobili Shop</Text>
 
       <View className="mb-6 p-2 shadow-md bg-white rounded-2xl ">
@@ -81,6 +82,7 @@ const home = () => {
             autoplayTimeout={4}>
             {mockProducts.slice(0, 3).map((item) => (
               <TouchableOpacity
+                onPress={() => router.push(`/product/${item.id}`)}
                 key={item.id}
                 className="bg-white rounded-2xl p-4 mx-4 shadow-lg">
                 <Image

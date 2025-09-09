@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, Image, TextInput } from "react-native";
 
@@ -46,6 +47,8 @@ const products = () => {
   const [search, setSearch] = useState(""); // recherche par nom
   const [selectedCategory, setSelectedCategory] = useState("All"); // filtre par catégorie
 
+  const route = router
+
   // Extraire toutes les catégories uniques
   const uniqueCategories = ["All", ...new Set(categories.map((c) => c.category))];
 
@@ -73,6 +76,7 @@ const products = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mb-4">
         {uniqueCategories.map((cat, idx) => (
           <TouchableOpacity
+            
             key={idx}
             onPress={() => setSelectedCategory(cat)}
             className={`px-4 py-2 mr-2 rounded-full ${
