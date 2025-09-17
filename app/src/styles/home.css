@@ -1,121 +1,144 @@
 .hero__section{
-    background: var(--hero-bg);
+    background: transparent;
+    padding: 0;
 }
 
-.hero__section h2{
-    color: var(--primary-color);
-    font-size: 2.5rem ;
+.hero__inner{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.hero__text{
+    flex: 1 1 480px;
+}
+
+.hero__media{
+    flex: 1 1 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__media img{ 
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+/* Card styles to create rounded containers similar to the provided design */
+.card{
+    background: var(--card-bg, #ffffff);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+    padding: 1.25rem;
+}
+
+.card--hero{ padding:1.75rem; border-radius:26px }
+.card--promo{ padding:1.25rem; border-radius:20px }
+.card--products{ padding:1rem; border-radius:18px }
+
+/* Inner adjustments so cards have distinct visual spacing */
+.card .hero__inner{ gap:1.5rem }
+.card .promo__inner{ align-items:center; gap:1rem }
+
+
+.hero_subtitle{
+    color: var(--muted-color);
     font-weight: 600;
-    margin: 20px 0px;
+    margin-bottom: 0.4rem;
+    text-transform: none;
 }
-.hero__section p {
+
+.hero__title{
     color: var(--primary-color);
-    line-height: 28px ;
+    font-size: 2.25rem;
+    margin: 0.6rem 0;
+    line-height: 1.1;
 }
 
-.hero__section p:nth-child(1){
-    font-weight: 500;
+.hero__lead{
+    color: var(--muted-color);
+    margin-bottom: 1.25rem;
 }
 
-.buy__btn{
-    border: none;
-    outline: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    background: var(--primary-color);
-    color: #fff;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 40px;
-}
-.buy__btn a {
-    color: #fff;
-    text-decoration: none;
-}
+.hero__cta{ display:flex; gap:1rem; align-items:center; flex-wrap:wrap }
+.btn{ display:inline-block; padding:0.6rem 1rem; border-radius:6px; text-decoration:none }
+.btn.primary{ background:var(--primary-color); color:#fff }
+.btn.outline{ border:1px solid rgba(0,0,0,0.08); color:var(--primary-color); background:transparent }
+.btn.secondary{ background:#fff; color:var(--primary-color); border:1px solid rgba(0,0,0,0.06) }
 
-.buy__btn a:hover {
- color: #fff;   
-}
+.section{ padding: 3rem 0 }
+.section--products .section__header{ text-align:left; margin-bottom:1rem }
+.section__title{ font-size:1.6rem; color:var(--dark); margin:0 }
+.section__subtitle{ color:var(--muted-color); margin-top:0.25rem }
 
-.hero__content{
-    margin-top: 45px;  
-}
+.muted{ color:var(--muted-color); }
 
-.timer__count {
-background: var(--primary-color);
-height: 350px;
+.section--promo{ background:var(--primary-color); color:#fff; padding:2rem 0; margin-top:1.5rem }
+.promo__inner{ display:flex; gap:2rem; align-items:center; justify-content:space-between }
+.promo__text{ flex:1 }
+.promo__media{ flex:0 0 260px; display:flex; justify-content:center }
+.promo__media img{ width:100%; max-width:260px; height:auto; border-radius:8px }
+
+@media only screen and (max-width:992px){
+    .hero__inner{ flex-direction:column-reverse; text-align:center }
+    .section--promo .promo__inner{ flex-direction:column; text-align:center }
+    .section--products .section__header{ text-align:center }
 }
 
-.timer__count img {
-    width: 70% !important;
-    height: 70% !important;
-    object-fit: contain;
-
-}
-.store__btn{
-    background: #fff;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-.store__btn a:hover {
-    color: var(--primary-color);
+/* --- Frame & Topbar --- */
+.app-frame{
+    margin: 2.5rem auto;
+    max-width: 1180px;
+    background: linear-gradient(180deg, #f6f9fa 0%, #eef2ef 100%);
+    border-radius: 28px;
+    padding: 1.25rem;
+    box-shadow: 0 30px 80px rgba(9,30,63,0.12);
 }
 
-@media  only screen and (max-width:992px) {
-    .hero__content h2 {
-        font-size: 2rem;
-    }
+.topbar{ display:flex; align-items:center; gap:1rem; padding:0.6rem; }
+.topbar__left .logo{ font-weight:700; font-size:1.1rem }
+.topbar__center{ flex:1 }
+.topbar__center .search{ width:100%; padding:0.6rem 0.9rem; border-radius:999px; border:none; box-shadow: inset 0 1px 0 rgba(0,0,0,0.02); }
+.topbar__right{ display:flex; gap:0.5rem; align-items:center }
+.icon-btn{ background:transparent; border:none; padding:0.45rem 0.6rem; border-radius:8px; cursor:pointer }
+.avatar{ width:36px; height:36px; border-radius:999px; background:linear-gradient(45deg,#fff,#eee); display:flex; align-items:center; justify-content:center; font-weight:700 }
 
-    .section__title{
-        font-size: 1.7rem;
-    }
-    
-    .counter__img{
-        display: none !important;
-    }
+/* --- Layout: hero + sidebar --- */
+.layout{ display:grid; grid-template-columns: 1fr 320px; gap:1rem; margin-top:1rem }
+.sidebar{ display:flex; flex-direction:column; gap:1rem }
+.card--sidebar{ padding:1rem; border-radius:14px }
+.card--small{ padding:0.6rem; border-radius:14px; display:flex; gap:0.8rem; align-items:center }
+.small-media img{ width:80px; height:80px; object-fit:cover; border-radius:10px }
+.small-title{ font-size:0.95rem; font-weight:600 }
 
-    .clock__top-content {
-        text-align: center !important;
-    }
+/* --- Mini cards under hero --- */
+.mini-cards{ display:flex; gap:0.8rem; margin-top:1rem }
+.mini-card{ background:var(--card-bg,#fff); padding:0.6rem; border-radius:12px; flex:1; box-shadow:0 8px 20px rgba(16,24,40,0.06); display:flex; gap:0.6rem; align-items:center }
+.mini-card .mini-media img{ width:56px; height:56px; object-fit:cover; border-radius:8px }
+.mini-title{ font-weight:600 }
+.mini-sub{ font-size:0.8rem; color:var(--muted-color) }
 
-    .clock__top-content h4 {
-        font-size: 0.9rem !important;
-    }
+/* --- Color chips --- */
+.chips{ display:flex; gap:0.5rem; margin-top:0.6rem }
+.chip{ width:28px; height:28px; border-radius:999px; border:none; cursor:pointer }
+.chip.blue{ background:#2b9cff }
+.chip.orange{ background:#ffb44b }
+.chip.green{ background:#38d39f }
+.chip.red{ background:#ff6b6b }
+.chip.cyan{ background:#6be7e7 }
 
-    .clock__top-content h3 {
-        font-size: 1rem !important;
-    }
-
-    .count__down-col {
-        text-align: center !important;
-    }
+@media (max-width: 980px){
+    .layout{ grid-template-columns: 1fr; }
+    .sidebar{ order:2 }
 }
 
-
-@media  only screen and (max-width:768px) {
-    .hero__content h2 {
-        font-size: 1.6rem;
-    }
-    
-    .hero__content p {
-        font-size: 1rem;
-    }
-
-    .buy__btn a {
-        font-size: 0.9rem;
-    } 
-
-    .section__title {
-        font-size: 1.4rem;
-    }
-
-}
-
-
-@media  only screen and (max-width:576px){
-    .hero__content{
-        padding-top: 0;
-        margin-bottom: 40px;
-
-    }
+@media only screen and (max-width:576px){
+    .hero__title{ font-size:1.4rem }
+    .hero__media img{ max-width:320px }
+    .promo__media{ max-width:200px }
 }

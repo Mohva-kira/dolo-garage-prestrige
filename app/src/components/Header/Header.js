@@ -22,12 +22,12 @@ const nav__links = [
     display: 'Accueil'
   },
   {
-    path: 'shop?category=linge de maison',
+    path: 'shop?category=consommable',
     display: 'Pieces de voiture' 
   },
   {
-    path: 'shop?category=Vêtements',
-    display: 'Acessoiress'
+    path: 'shop?category=*accessoires',
+    display: 'Accessoires'
   },
   // {
   //   path: 'shop?category=Acessoires',

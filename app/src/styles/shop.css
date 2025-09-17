@@ -50,3 +50,31 @@
         font-size: 0.9rem;
     }
 }
+
+/* New rounded layout and pagination */
+.shop-filters {
+    border-radius: 16px;
+}
+
+.product-list-row > div {
+    padding: 0.5rem;
+}
+
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    border-radius: 8px;
+    padding: 6px 10px;
+    background: #f3f4f6;
+    border: none;
+}
+
+.pagination span {
+    font-weight: 600;
+}

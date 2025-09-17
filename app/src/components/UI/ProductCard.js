@@ -1,7 +1,6 @@
 import React from "react";
 import productImg from "../../assets/images/arm-chair-01.jpg";
 import { motion } from "framer-motion";
-import { Col } from "reactstrap";
 import "../../styles/product-card.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -43,11 +42,10 @@ const ProductCard = ({ item }) => {
     toast.success("Porduit ajouté au panier");
   };
   return (
-    <Col lg="3" md="4" className="mb-6 px-3">
-      <motion.div
-        className="product-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 h-[500px] w-full flex flex-col"
-        whileHover={{ y: -8, transition: { duration: 0.3 } }}
-        whileTap={{ scale: 0.98 }}>
+    <motion.div
+      className="product-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 h-[500px] w-full flex flex-col"
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      whileTap={{ scale: 0.98 }}>
         {/* Image Container */}
         <div className="product-image-container relative h-48 w-full bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden flex-shrink-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-400/10"></div>
@@ -125,8 +123,7 @@ const ProductCard = ({ item }) => {
 
         {/* Subtle gradient border effect */}
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"></div>
-      </motion.div>
-    </Col>
+    </motion.div>
   );
 };
 
