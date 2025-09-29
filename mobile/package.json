@@ -26,7 +26,7 @@
     "@tensorflow/tfjs-react-native": "^1.0.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
-    "expo": "^53.0.20",
+    "expo": "^54.0.2",
     "expo-blur": "~14.1.5",
     "expo-camera": "~16.1.11",
     "expo-constants": "~17.1.7",
@@ -55,6 +55,7 @@
     "react-native-swiper": "^1.6.0",
     "react-native-web": "^0.20.0",
     "react-native-webview": "13.13.5",
+    "react-native-worklets": "^0.5.1",
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {

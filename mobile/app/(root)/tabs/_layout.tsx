@@ -21,10 +21,10 @@ export default function Layout() {
           height: Platform.OS === "ios" ? 80 : 70,
           borderRadius: 30,
           
-         backgroundColor: "transparent", 
+          backgroundColor: "rgba(0, 0, 0, 0.1)", // Sombre semi-transparent
           paddingHorizontal: 18,
           paddingTop: 10,
-          shadowColor: "#f5f5dc",
+          shadowColor: "#D3D3D3",
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.08,
           shadowRadius: 20,

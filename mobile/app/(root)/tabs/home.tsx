@@ -10,6 +10,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import Swiper from "react-native-swiper";
 import { router } from "expo-router";
+import Breadcumbs from "@/components/Breadcumbs";
 
 const mockProducts = [
   {
@@ -56,9 +57,9 @@ const home = () => {
   }
   return (
     <View className="flex-1 bg-[#f4f1eb]  p-4">
-      <Text className="text-xl font-bold mb-4">Mobili Shop</Text>
+      <Breadcumbs title={'Accueil'} />
 
-      <View className="mb-6 p-2 shadow-md bg-white rounded-2xl ">
+      <View className="mb-6 p-2  mt-4 shadow-md bg-white rounded-2xl ">
         <Image
           source={{
             uri: "https://media.gettyimages.com/id/458961537/fr/photo/v%C3%A9hicule-fabricant-logos.jpg?s=612x612&w=gi&k=20&c=b7DXWIYh1ycQKQbXv1rHVmCSHakQdXbirAafkP5XegI=",
