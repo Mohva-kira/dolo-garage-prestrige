@@ -6,18 +6,21 @@ import '../styles/shop.css'
 
 // import products from '../assets/data/products'
 import ProductList from '../components/UI/ProductList'
-import { useGetProductsQuery } from '../reducers/products'
+import { useGetProductsQuery, useLazyGet_product_by_categoryQuery } from '../reducers/products'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 const Shop = () => {
-  const {data, isLoading, isSuccess} = useGetProductsQuery()
+  const {data, isSuccess} = useGetProductsQuery()
+  const [get_product, {data: product_data, isLoading  }] = useLazyGet_product_by_categoryQuery()
   
   const [searchParams, setSearchParams] = useSearchParams();
    console.log('le param', searchParams.get("category")) 
  
   
    const categoryParam =   searchParams.get("category")
+
+   console.log('categoryParam', categoryParam)
    const [ productsData, setProductsData ] = useState()
 
   const handleFilter = e=> {
@@ -63,6 +66,13 @@ const Shop = () => {
   useEffect(()=> {
   categoryParam ? setProductsData(data?.data) : setProductsData(data?.data)
   }, [isSuccess, categoryParam])
+
+  useEffect(()=> {
+    if(categoryParam){
+      get_product({category : categoryParam})
+      setProductsData(product_data?.data)
+    }
+  }, [categoryParam])
 
   return <Helmet title="Shop"> 
       <CommonSection  title={ 'Boutique'} />

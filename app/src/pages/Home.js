@@ -3,18 +3,20 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import heroImage from "../assets/images/bamako.png";
+import heroImage from "../assets/images/bamako.jpg";
 import counterImg from "../assets/images/femme.png";
 import Helmet from "../components/Helmet/Helmet";
 import Clock from "../components/UI/Clock";
 import ProductList from "../components/UI/ProductList";
-import { useGetProductsQuery } from "../reducers/products";
+import { useGetProductsQuery, useLazyGet_product_by_categoryQuery } from "../reducers/products";
 import Services from "../services/Services";
 import "../styles/home.css";
 
 const Home = () => {
   const { t, i18n } = useTranslation();
   const { data, isLoading, isFetching, isSuccess } = useGetProductsQuery({});
+  const [get_product_by_category, { data: dataByCategory, isLoading: isLoadingByCategory }] = useLazyGet_product_by_categoryQuery();
+  const [get_product_by_category_2, { data: dataByCategory_2, isLoading: isLoadingByCategory_2 }] = useLazyGet_product_by_categoryQuery();
 
   const [trendingProduct, setTrendingProduct] = useState([]);
   const [bestSalesProducts, setBestSalesProducts] = useState([]);
@@ -27,11 +29,26 @@ const Home = () => {
   useEffect(() => {
     const naturalProducts = data?.data.filter((item) => item);
 
-    setTrendingProduct(data?.data?.filter(item => item.category?.name === 'consommable' ) || []); 
-    setBestSalesProducts(
-      naturalProducts?.filter((item) => item.category?.name !== "consommable") || []
-    );
+    
+    
   }, [isSuccess]);
+
+
+  useEffect(() => {
+    get_product_by_category({ category: 'accessores', page: 1, pageSize: 6 });
+    get_product_by_category_2({ category: 'consommable', page: 1, pageSize: 6 });
+    console.log("dataByCategory", dataByCategory);
+    
+  }
+  , []);
+
+  useEffect(() => {
+    
+    console.log("dataByCategory", dataByCategory);
+    setBestSalesProducts(dataByCategory?.data || []);
+    setTrendingProduct(dataByCategory_2?.data || []); 
+  }, [dataByCategory, dataByCategory_2]);
+  
 
   return (
     <Helmet title={"Home"}>

@@ -22,7 +22,15 @@ export const productsApi = createApi({
     endpoints: (builder) => ({
         getProducts: builder.query({
             query: (data) => ({
-                url: `/products?populate=*`,
+                url: `/products?populate=*&sort=createdAt:desc&pagination[page]=${data?.page || 1}&pagination[pageSize]=${data?.pageSize || 9}`,
+                method: 'GET',
+               
+            }),
+        }),
+
+        get_product_by_category: builder.query({
+            query: (data) => ({
+                url: `/products?populate=*&filters[category][name][$eq]=${data?.category}&sort=createdAt:desc&pagination[page]=${data?.page || 1}&pagination[pageSize]=${data?.pageSize || 9}`,
                 method: 'GET',
                
             }),
@@ -61,4 +69,4 @@ const productsSlice = createSlice({
 
 
 export default productsSlice.reducer;
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useLazyGet_product_by_categoryQuery } = productsApi;
